@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema<IOrder, OrderModel>(
     email: { type: String, required: [true, 'Email is required'] },
     product: { type: String, required: [true, 'Product is required'] },
     quantity: { type: Number, required: [true, 'Quantity is required'] },
-    price: { type: Number, required: [true, 'Price is required'] },
+    totalPrice: { type: Number, required: [true, 'Price is required'] },
   },
   { timestamps: true },
 );

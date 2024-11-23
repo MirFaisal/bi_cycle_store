@@ -4,7 +4,7 @@ export interface IOrder {
   email: string;
   product: string;
   quantity: number;
-  price: number;
+  totalPrice: number;
 }
 
 /**

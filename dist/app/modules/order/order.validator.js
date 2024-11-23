@@ -7,7 +7,7 @@ const orderZodSchema = zod_1.z.object({
     quantity: zod_1.z
         .number({ required_error: 'Quantity is required' })
         .min(1, { message: 'Quantity must be at least 1' }),
-    price: zod_1.z
+    totalPrice: zod_1.z
         .number({ required_error: 'Price is required' })
         .positive({ message: 'Price must be a positive number' }),
 });

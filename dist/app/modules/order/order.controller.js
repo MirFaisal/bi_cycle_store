@@ -55,7 +55,13 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 error,
                 stack,
             });
+            return;
         }
+        res.status(500).json({
+            success: false,
+            message: 'Server erorr',
+            error,
+        });
     }
 });
 /**

@@ -30,7 +30,7 @@ const calculateRevenue = () => __awaiter(void 0, void 0, void 0, function* () {
         {
             $group: {
                 _id: null,
-                totalRevenue: { $sum: '$price' },
+                totalRevenue: { $sum: '$totalPrice ' },
             },
         },
         //stage 2

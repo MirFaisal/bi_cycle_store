@@ -18,7 +18,7 @@ const orderSchema = new mongoose_1.default.Schema({
     email: { type: String, required: [true, 'Email is required'] },
     product: { type: String, required: [true, 'Product is required'] },
     quantity: { type: Number, required: [true, 'Quantity is required'] },
-    price: { type: Number, required: [true, 'Price is required'] },
+    totalPrice: { type: Number, required: [true, 'Price is required'] },
 }, { timestamps: true });
 /**
  * @description Static method to check if a product is available in the desired quantity.

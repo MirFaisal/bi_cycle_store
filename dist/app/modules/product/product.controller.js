@@ -76,7 +76,13 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 error,
                 stack,
             });
+            return;
         }
+        res.status(500).json({
+            success: false,
+            message: 'Server Erroe',
+            error,
+        });
     }
 });
 /**
@@ -90,8 +96,7 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             res.status(404).json({ success: false, message: 'Invalid id' });
             return;
         }
-        const validatedData = product_validator_1.default.parse(req.body);
-        const product = yield product_service_1.ProductService.updateProduct(id, validatedData);
+        const product = yield product_service_1.ProductService.updateProduct(id, req.body);
         if (!product) {
             res.status(404).json({ success: false, message: 'Product not found' });
         }

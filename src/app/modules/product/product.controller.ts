@@ -29,7 +29,6 @@ const allProducts = async (req: Request, res: Response) => {
       }
     } else {
       const products = await ProductService.getAllProducts();
-
       res.status(200).json({
         success: true,
         message: 'Successfully fetched all products',
@@ -66,7 +65,13 @@ const createProduct = async (req: Request, res: Response) => {
         error,
         stack,
       });
+      return;
     }
+    res.status(500).json({
+      success: false,
+      message: 'Server Erroe',
+      error,
+    });
   }
 };
 
@@ -83,9 +88,7 @@ const updateProduct = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const validatedData = productZodSchema.parse(req.body);
-
-    const product = await ProductService.updateProduct(id, validatedData);
+    const product = await ProductService.updateProduct(id, req.body);
 
     if (!product) {
       res.status(404).json({ success: false, message: 'Product not found' });

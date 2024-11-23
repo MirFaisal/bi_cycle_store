@@ -48,7 +48,13 @@ const createOrder = async (req: Request, res: Response): Promise<void> => {
         error,
         stack,
       });
+      return;
     }
+    res.status(500).json({
+      success: false,
+      message: 'Server erorr',
+      error,
+    });
   }
 };
 
