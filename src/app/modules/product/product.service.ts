@@ -5,7 +5,7 @@ import Product from './product.model';
  * @description This Service Function is used to get all products
  */
 const getAllProducts = async (): Promise<IProduct[]> => {
-  const products = await Product.find({});
+  const products = await Product.find({ idDeleted: false });
   return products;
 };
 /**

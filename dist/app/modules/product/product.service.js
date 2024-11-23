@@ -18,7 +18,7 @@ const product_model_1 = __importDefault(require("./product.model"));
  * @description This Service Function is used to get all products
  */
 const getAllProducts = () => __awaiter(void 0, void 0, void 0, function* () {
-    const products = yield product_model_1.default.find({});
+    const products = yield product_model_1.default.find({ idDeleted: false });
     return products;
 });
 /**
