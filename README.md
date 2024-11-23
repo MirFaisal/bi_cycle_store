@@ -57,7 +57,7 @@ Make sure you have the following installed on your machine:
 3. Create a `.env` file in the project root and add the following variables:
    ```
    PORT=5000
-   MONGO_URI=mongodb://localhost:27017/
+   MONGO_URI=mongodb+srv://faisalsakib9:y3ofM7SJCrbn5hSP@cluster0.ukneb.mongodb.net/
    ```
 
 4. Start the development server:
