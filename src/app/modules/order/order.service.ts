@@ -18,7 +18,7 @@ const calculateRevenue = async (): Promise<object> => {
     {
       $group: {
         _id: null,
-        totalRevenue: { $sum: '$totalPrice ' },
+        totalRevenue: { $sum: '$totalPrice' },
       },
     },
     //stage 2

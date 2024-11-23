@@ -25,10 +25,9 @@ const allProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         if (req.query.searchTerm) {
             const products = yield product_service_1.ProductService.getProductWithQuery(req.query.searchTerm);
             if (products.length === 0) {
-                res.status(200).json({
-                    success: true,
+                res.status(404).json({
+                    success: false,
                     message: 'No products found',
-                    data: products,
                 });
             }
             else {

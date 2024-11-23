@@ -15,10 +15,9 @@ const allProducts = async (req: Request, res: Response) => {
       );
 
       if (products.length === 0) {
-        res.status(200).json({
-          success: true,
+        res.status(404).json({
+          success: false,
           message: 'No products found',
-          data: products,
         });
       } else {
         res.status(200).json({
