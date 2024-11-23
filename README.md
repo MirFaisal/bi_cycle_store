@@ -62,7 +62,7 @@ Make sure you have the following installed on your machine:
 
 4. Start the development server:
    ```bash
-   npm start
+   npm run start
    ```
 
 5. Access the server at:
