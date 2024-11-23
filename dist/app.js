@@ -15,6 +15,11 @@ app.use((0, cors_1.default)());
 /**
  * all routes
  */
+app.get('/', (req, res) => {
+    res
+        .status(200)
+        .json({ sucess: true, message: 'Welcome to the "bi_cycle_store" API' });
+});
 // Product routes
 app.use('/api/products', product_route_1.ProductRoutes);
 // Order routes
