@@ -9,8 +9,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cros());
 
-// routes
+/**
+ * all routes
+ */
+// Product routes
 app.use('/api/products', ProductRoutes);
+// Order routes
 app.use('/api/orders', OrderRoutes);
 
 // uninknown route handler
