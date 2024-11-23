@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.productController = void 0;
+const mongoose_1 = __importDefault(require("mongoose"));
 const zod_1 = require("zod");
 const product_service_1 = require("./product.service");
 const product_validator_1 = __importDefault(require("./product.validator"));
@@ -84,6 +85,11 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
+        // check if id is valid
+        if (!mongoose_1.default.Types.ObjectId.isValid(id)) {
+            res.status(404).json({ success: false, message: 'Invalid id' });
+            return;
+        }
         const validatedData = product_validator_1.default.parse(req.body);
         const product = yield product_service_1.ProductService.updateProduct(id, validatedData);
         if (!product) {
@@ -109,6 +115,11 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
+        // check if id is valid
+        if (!mongoose_1.default.Types.ObjectId.isValid(id)) {
+            res.status(404).json({ success: false, message: 'Invalid id' });
+            return;
+        }
         const product = yield product_service_1.ProductService.deleteProduct(id);
         if (!product) {
             res.status(404).json({ success: false, message: 'Product not found' });
@@ -133,6 +144,11 @@ const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
+        // check if id is valid
+        if (!mongoose_1.default.Types.ObjectId.isValid(id)) {
+            res.status(404).json({ success: false, message: 'Invalid id' });
+            return;
+        }
         const product = yield product_service_1.ProductService.getProductById(id);
         if (!product) {
             res.status(404).json({ success: false, message: 'Product not found' });

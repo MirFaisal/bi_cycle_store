@@ -11,6 +11,7 @@ import orderZodSchema from './order.validator';
 const createOrder = async (req: Request, res: Response): Promise<void> => {
   try {
     const validatedData = orderZodSchema.parse(req.body);
+
     const isExists = await Order.isExists(validatedData.product);
     if (!isExists) {
       res.status(400).json({

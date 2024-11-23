@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import mongoose from 'mongoose';
 import { z } from 'zod';
 import { ProductService } from './product.service';
 import productZodSchema from './product.validator';
@@ -48,7 +49,9 @@ const allProducts = async (req: Request, res: Response) => {
 const createProduct = async (req: Request, res: Response) => {
   try {
     const validatedData = productZodSchema.parse(req.body);
+
     const product = await ProductService.createProduct(validatedData);
+
     res.status(201).json({
       success: true,
       message: 'Successfully created a product',
@@ -70,10 +73,18 @@ const createProduct = async (req: Request, res: Response) => {
 /**
  * @description This API is used to update an existing product.
  */
-const updateProduct = async (req: Request, res: Response) => {
+const updateProduct = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
+
+    // check if id is valid
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(404).json({ success: false, message: 'Invalid id' });
+      return;
+    }
+
     const validatedData = productZodSchema.parse(req.body);
+
     const product = await ProductService.updateProduct(id, validatedData);
 
     if (!product) {
@@ -95,10 +106,18 @@ const updateProduct = async (req: Request, res: Response) => {
 /**
  * @description This API is used to delete a product
  */
-const deleteProduct = async (req: Request, res: Response) => {
+const deleteProduct = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
+
+    // check if id is valid
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(404).json({ success: false, message: 'Invalid id' });
+      return;
+    }
+
     const product = await ProductService.deleteProduct(id);
+
     if (!product) {
       res.status(404).json({ success: false, message: 'Product not found' });
     } else {
@@ -118,10 +137,18 @@ const deleteProduct = async (req: Request, res: Response) => {
 /**
  * @description This API is used to get a product by its id
  */
-const getProductById = async (req: Request, res: Response) => {
+const getProductById = async (req: Request, res: Response): Promise<void> => {
   try {
     const { id } = req.params;
+
+    // check if id is valid
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      res.status(404).json({ success: false, message: 'Invalid id' });
+      return;
+    }
+
     const product = await ProductService.getProductById(id);
+
     if (!product) {
       res.status(404).json({ success: false, message: 'Product not found' });
     } else {
